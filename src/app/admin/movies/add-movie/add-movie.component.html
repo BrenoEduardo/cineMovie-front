@@ -9,7 +9,7 @@
         <input
           type="text"
           formControlName="name"
-          class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          class="border-black border p-2 mt-1 block w-full h-10 rounded-md  shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
         />
       </label>
 
@@ -17,7 +17,7 @@
         <span class="text-gray-700">Descrição:</span>
         <textarea
           formControlName="description"
-          class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          class="border-black border p-2 mt-1 block w-full h-10 rounded-md  shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
         ></textarea>
       </label>
 
@@ -26,7 +26,7 @@
         <input
           type="number"
           formControlName="duration"
-          class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          class="border-black border p-2 mt-1 block w-full h-10 rounded-md  shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
         />
       </label>
       <label class="custom-file-input">
@@ -34,7 +34,7 @@
         <input
           type="file"
           (change)="onFileSelected($event)"
-          class="mt-1 block"
+          class="border-black border mt-1 block"
         />
         <span class="select-achive">{{
           this.filmeForm.value.coverImage
@@ -47,7 +47,7 @@
         <input
           type="number"
           formControlName="releaseYear"
-          class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          class="border-black border border p-2 mt-1 block w-full h-10 rounded-md  shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
         />
       </label>
 
@@ -59,7 +59,7 @@
           Genêro {{ i + 1 }}:
           <select
             formControlName="{{ i }}"
-            class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            class="p-2 mt-1 border border-black block w-full h-10 rounded-md  shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
           >
             <option *ngFor="let genre of genres" [value]="genre.name">
               {{ genre.name }}
@@ -75,7 +75,7 @@
         <button
           type="button"
           (click)="addGenre()"
-          class="p-2 mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          class="p-2 mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded border-black"
         >
           Adicionar Genêro
         </button>
@@ -89,7 +89,7 @@
           Diretor {{ i + 1 }}:
           <select
             formControlName="{{ i }}"
-            class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            class="p-2 mt-1 border border-black block w-full h-10 rounded-md  shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
           >
             <option *ngFor="let director of directors" [value]="director.name">
               {{ director.name }}
@@ -105,7 +105,7 @@
         <button
           type="button"
           (click)="addDirector()"
-          class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded border-black"
         >
           Adicionar Diretor
         </button>
@@ -119,7 +119,7 @@
           Ator/Atriz {{ i + 1 }}:
           <select
             formControlName="{{ i }}"
-            class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            class="p-2 mt-1 border border-black block w-full h-10 rounded-md  shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
           >
             <option *ngFor="let actor of actors" [value]="actor.name">
               {{ actor.name }}
@@ -135,7 +135,7 @@
         <button
           type="button"
           (click)="addActor()"
-          class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded border-black"
         >
           Adicionar Ator/Atriz
         </button>
@@ -144,7 +144,7 @@
     <div>
       <button
         type="submit"
-        class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-4 rounded cursor-pointer"
+        class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-4 rounded cursor-pointer border-black"
       >
         Adicionar
       </button>
@@ -173,42 +173,29 @@
         <input
           type="text"
           formControlName="genresName"
-          class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          class="p-2 border border-black mt-1 block w-full h-10 rounded-md  shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
         />
       </label>
-      <!-- <button type="button" (click)="addgenresName()" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Adicionar Gênero
-      </button> -->
     </div>
-
-    <!-- Diretor -->
     <div class="mb-4">
       <label class="block">
         <span class="text-gray-700">Diretor:</span>
         <input
           type="text"
           formControlName="directorName"
-          class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          class="p-2 mt-1 border border-black block w-full h-10 rounded-md  shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
         />
       </label>
-      <!-- <button type="button" (click)="addDirectorname()" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Adicionar Diretor
-      </button> -->
     </div>
-
-    <!-- Ator/Atriz -->
     <div class="mb-4">
       <label class="block">
         <span class="text-gray-700">Ator/Atriz:</span>
         <input
           type="text"
           formControlName="actorName"
-          class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          class="p-2 mt-1 border border-black block w-full h-10 rounded-md  shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
         />
       </label>
-      <!-- <button type="button" (click)="addactorName()" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Adicionar Ator/Atriz
-      </button> -->
     </div>
     <!-- <mat-error *ngIf="errorCreate" class="pt-2">Campos em branco</mat-error> -->
     <div>

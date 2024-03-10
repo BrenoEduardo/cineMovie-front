@@ -1,0 +1,39 @@
+<div class="flex items-center space-x-2 justify-center">
+  <mat-form-field class="flex-1 example-form-field w-full max-w-[640px]">
+    <mat-icon matPrefix class="cursor-pointer" (click)="toggleFilters()"
+      >filter_list</mat-icon
+    >
+    <input
+      matInput
+      type="text"
+      placeholder="Pesquisar"
+      (keyup)="filter($event)"
+    />
+    <button matSuffix mat-icon-button aria-label="search">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+<div class="flex justify-center filters-form hidden">
+  <span class="text-start z-50 font-bold">Filtrar por:</span>
+  <div class="absolute bg-white border border-gray-300 p-4 z-10">
+    <mat-checkbox
+      (change)="updateFilters($event, 'directors')"
+      value="directors"
+    >
+      Diretor
+    </mat-checkbox>
+
+    <mat-checkbox (change)="updateFilters($event, 'name')" value="name" checked>
+      Nome
+    </mat-checkbox>
+
+    <mat-checkbox (change)="updateFilters($event, 'genres')" value="genres">
+      Gênero
+    </mat-checkbox>
+
+    <mat-checkbox (change)="updateFilters($event, 'actors')" value="actors">
+      Atores
+    </mat-checkbox>
+  </div>
+</div>

@@ -29,7 +29,6 @@ export class DetailsMovieComponent implements OnInit {
       const movieParam = params.get('movie');
       if (movieParam) {
         this.movie = JSON.parse(movieParam);
-        console.log(this.movie);
       }
     });
   }
@@ -38,8 +37,6 @@ export class DetailsMovieComponent implements OnInit {
   }
   rateMovie(rating: number): void {
     this.userRating = rating;
-    console.log(this.infoUser);
-    console.log(this.movie);
     const payload = {
       idUser: this.infoUser.id,
       rating: this.userRating,
@@ -50,7 +47,6 @@ export class DetailsMovieComponent implements OnInit {
 
       });
     }
-    console.log(this.userRating);
   }
 
   isRated(star: number) {

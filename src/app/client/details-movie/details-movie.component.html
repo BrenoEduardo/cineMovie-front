@@ -3,7 +3,7 @@
 
   <div class="max-w-screen-xl mx-auto p-8 bg-white rounded-lg shadow-lg">
     <button mat-icon-button class="" (click)="goBack()">
-      <mat-icon class="">keyboard_arrow_left</mat-icon>
+      <mat-icon class="!text-4xl !w-10 !h-10">keyboard_arrow_left</mat-icon>
     </button>
     <h2 class="text-3xl font-bold mb-4">{{ movie.name }}</h2>
     <div class="flex flex-wrap items-center mb-4">
@@ -22,19 +22,19 @@
           <strong>Gêneros:</strong>
           <span *ngFor="let genre of movie.genres" class="mr-2">{{
             genre.genresName
-          }}</span>
+          }};</span>
         </p>
         <p>
           <strong>Diretores:</strong>
           <span *ngFor="let director of movie.directors" class="mr-2">{{
             director.directorName
-          }}</span>
+          }};</span>
         </p>
         <p>
           <strong>Atores:</strong>
           <span *ngFor="let actor of movie.actors" class="mr-2">{{
             actor.actorName
-          }}</span>
+          }};</span>
         </p>
       </div>
     </div>

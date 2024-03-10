@@ -1,19 +1,30 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 import { MovieModel } from 'src/core/interface/movies.model';
 import { ClienteService } from 'src/core/service/cliente/cliente.service';
 
 @Component({
   selector: 'app-movies-client',
   templateUrl: './movies-client.component.html',
-  styleUrls: ['./movies-client.component.scss']
+  styleUrls: ['./movies-client.component.scss'],
 })
 export class MoviesClientComponent {
   public movies!: MovieModel[];
-  public moviesCarrouselPrincipa: MovieModel[] = [];
+  public filterMovies!: MovieModel[];
+  public actionMovies!: MovieModel[];
+  public avaliationMovies!: MovieModel[];
+
+  public moviesCarrouselPrincipal: MovieModel[] = [];
+  public filter: string = '';
+  public infoUser: any;
+  public loading: boolean = false;
 
   public imageMovie: string[] = [];
-  constructor(private router: Router, private clienteService: ClienteService) {}
+  constructor(private router: Router, private clienteService: ClienteService) {
+    const jwtToken: any = localStorage.getItem('token');
+    this.infoUser = jwtDecode(jwtToken);
+  }
   ngOnInit(): void {
     this.getMovies();
   }
@@ -27,7 +38,7 @@ export class MoviesClientComponent {
         res.data,
         processedMovies
       );
-      this.moviesCarrouselPrincipa.push(...moviesWithCommonActors);
+      this.moviesCarrouselPrincipal.push(...moviesWithCommonActors);
       moviesAdded += moviesWithCommonActors.length;
 
       if (moviesAdded < 10) {
@@ -35,7 +46,7 @@ export class MoviesClientComponent {
           res.data,
           processedMovies
         );
-        this.moviesCarrouselPrincipa.push(...moviesWithCommonDirectors);
+        this.moviesCarrouselPrincipal.push(...moviesWithCommonDirectors);
         moviesAdded += moviesWithCommonDirectors.length;
       }
 
@@ -44,11 +55,16 @@ export class MoviesClientComponent {
           res.data,
           processedMovies
         );
-        this.moviesCarrouselPrincipa.push(...moviesWithCommonGenres);
+        this.moviesCarrouselPrincipal.push(...moviesWithCommonGenres);
         moviesAdded += moviesWithCommonGenres.length;
       }
       this.movies = res.data;
+      this.setAOtherCarrosel();
     });
+  }
+  setAOtherCarrosel() {
+    this.actionMovies = this.movies.filter(movie => movie.genres.some((genre: any) => genre.genresName === 'Ação'));
+    this.avaliationMovies = this.movies.sort((a,b) => b.ratings - a.ratings);
   }
   findMoviesWithCommonActors(movies: any[], processedMovies: string[]): any[] {
     const result: any[] = [];
@@ -136,5 +152,14 @@ export class MoviesClientComponent {
       }
     });
     return result;
+  }
+  onLoadingChange(loading: boolean) {
+    this.loading = loading;
+  }
+  filterChange(filter: string) {
+    this.filter = filter;
+  }
+  onMoviesChange(movie: MovieModel[]) {
+    this.filterMovies = movie;
   }
 }

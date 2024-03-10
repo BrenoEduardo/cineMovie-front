@@ -1,39 +1,21 @@
 .carrossel-container {
   overflow: hidden;
+  width: 100%; /* Garante que o container ocupe toda a largura disponível */
 }
 
 .carrossel {
   display: flex;
-  transition: transform 0.5s ease;
 }
 
 .item {
-  flex: 0 0 17%;
-  height: 300px; /* Altura desejada */
+  flex: 0 0 20%;
+  max-width: 300px;
+  height: 200px;
   background-size: cover;
-  background-position: center;
+  background-repeat: no-repeat;
+  transition: all 0.5s ease-in-out;
 }
 
-// .botoes-controle {
-//   display: flex;
-//   gap: 10px;
-//   justify-content: center;
-//   margin-top: 8px;
-// }
-
-// .botoes-controle button {
-//   background: #ccc;
-//   border: none;
-//   border-radius: 50%;
-//   cursor: pointer;
-//   height: 12px;
-//   width: 12px;
-// }
-
-// .botoes-controle button.ativo {
-//   background: #ff0000;
-//   cursor: default;
-// }
 .icon-button {
   background: none;
   border: none;
@@ -45,6 +27,3 @@
   outline: none;
 }
 
-.icon-button mat-icon {
-  font-size: px;
-}

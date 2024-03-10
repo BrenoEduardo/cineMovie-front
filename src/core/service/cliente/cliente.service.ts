@@ -16,4 +16,7 @@ export class ClienteService {
   sendRating(payload: any){
     return this.http.post(`${this.url}client/avaliation-movies`, payload)
   }
+  filterMovies(filter: any){
+    return this.http.post(`${this.url}client/filterMovies`, filter)
+  }
 }

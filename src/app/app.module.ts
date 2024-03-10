@@ -13,6 +13,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from 'src/core/interceptors/token.interceptor';
 import { AdminModule } from './admin/admin.module';
 import { ClientModule } from './client/client.module';
+import { SearchComponent } from './components/search/search.component';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { ClientModule } from './client/client.module';
     AdminModule,
     ClientModule,
     MatIconModule,
+    ComponentsModule
   ],
   providers: [
     {

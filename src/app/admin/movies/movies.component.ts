@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Subject, debounceTime, switchMap, tap } from 'rxjs';
 import { MovieModel } from 'src/core/interface/movies.model';
 import { AdminService } from 'src/core/service/admin/admin.service';
+import { ClienteService } from 'src/core/service/cliente/cliente.service';
 
 @Component({
   selector: 'app-movies',
@@ -15,29 +16,17 @@ export class MoviesComponent {
   public movies!: MovieModel[]
 
   constructor(
-    private adminService: AdminService
+    private adminService: AdminService,
+    private clientService: ClienteService
   ){
 
   }
   ngOnInit(): void {
     this.getAllMovies()
-    this.searchTerms.pipe(
-      tap(()=>{
-        this.loading = true;
-        this.movies = [];
-      }),
-      debounceTime(1000),
-      switchMap((term: any) =>{
-        return this.adminService.filterCompanies(term)
-      })
-    ).subscribe((res: any) => {
-      this.loading = false;
-      this.movies = res.data;
-    });
   }
 
   getAllMovies(){
-    this.adminService.getMovies().subscribe((res: any)=>{
+    this.clientService.getMovies().subscribe((res: any)=>{
       this.movies = res.data
     })
   }

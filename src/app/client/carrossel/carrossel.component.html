@@ -1,29 +1,55 @@
-<div>
-  <div class="flex gap-8">
-    <ng-container
-      *ngFor="
-        let grupoImagens of imagens
-          | slice : indexImagemAtiva : indexImagemAtiva + 5
-      "
-    >
-      <div
-        class="item cursor-pointer"
-        [style.backgroundImage]="
-          grupoImagens.coverImage.length > 0
-            ? 'url(' + grupoImagens.coverImage + ')'
-            : 'url(../../../../../assets/default-image.jpg)'
+<div class="relative">
+  <div class="carrossel-container overflow-hidden w-full relative">
+    <div class="carrossel flex gap-8">
+      <ng-container
+        *ngFor="
+          let movie of movies
+            | slice : indexImagemAtiva : indexImagemAtiva + 8
         "
-        (click)="descriptionMovie(grupoImagens)"
+      >
+        <div
+          class="item cursor-pointer relative rounded-md group"
+          [style.backgroundImage]="
+            movie.coverImage.length > 0
+              ? 'url(' + movie.coverImage + ')'
+              : 'url(../../../../../assets/default-image.jpg)'
+          "
+          (click)="descriptionMovie(movie)"
+        >
+        <div
+        class="absolute inset-0 bg-black opacity-0 group-hover:opacity-75 transition duration-300"
       ></div>
-    </ng-container>
-  </div>
-  <!-- Botões de controle -->
-  <div class="botoes-controle">
-    <button class="icon-button" (click)="pararTimer(); retrocederImagem()">
-      <mat-icon>chevron_left</mat-icon>
-    </button>
-    <button class="icon-button" (click)="pararTimer(); avancarImagem()">
-      <mat-icon>chevron_right</mat-icon>
-    </button>
+
+      <div
+        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300"
+      >
+        <h3 class="text-white text-center"> {{movie.name}} </h3>
+      </div>
+      </div>
+      </ng-container>
+    </div>
+    <!-- Botões de controle -->
+    <div class="absolute top-0 bottom-0 left-0 flex items-center">
+      <button
+        class="icon-button text-white"
+        (click)="pararTimer(); retrocederImagem()"
+      >
+        <mat-icon
+          class="!text-6xl !w-14 !h-14 hover:text-gray-300 transition duration-300 ease-in-out"
+          >chevron_left</mat-icon
+        >
+      </button>
+    </div>
+    <div class="absolute top-0 bottom-0 right-0 flex items-center">
+      <button
+        class="icon-button text-white"
+        (click)="pararTimer(); avancarImagem()"
+      >
+        <mat-icon
+          class="!text-6xl !w-14 !h-14 hover:text-gray-300 transition duration-300 ease-in-out"
+          >chevron_right</mat-icon
+        >
+      </button>
+    </div>
   </div>
 </div>

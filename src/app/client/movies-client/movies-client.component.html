@@ -1,4 +1,26 @@
 <div class="p-5 pt-10">
-  <h1 class="text-white">Sugestão para você</h1>
-<app-carrossel [imagens]="moviesCarrouselPrincipa"></app-carrossel>
+  <app-search
+    [infoUser]="infoUser"
+    (loadingChange)="onLoadingChange($event)"
+    (MoviesChange)="onMoviesChange($event)"
+    (filterChange)="filterChange($event)"
+  ></app-search>
+  <mat-spinner class="mx-auto" *ngIf="loading"></mat-spinner>
+  <div *ngIf="this.filter.length < 1; else moviesFilter">
+    <div class="pt-12" >
+      <h1 class="text-white">Sugestão para você</h1>
+      <app-carrossel [movies]="moviesCarrouselPrincipal" typeCarrosel="principal"></app-carrossel>
+    </div>
+    <div class="pt-20" >
+      <h1 class="text-white">Filmes de ação:</h1>
+      <app-carrossel [movies]="actionMovies"></app-carrossel>
+    </div>
+    <div class="pt-20" >
+      <h1 class="text-white">Filmes com maiores avaliações:</h1>
+      <app-carrossel [movies]="avaliationMovies"></app-carrossel>
+    </div>
+  </div>
+  <ng-template #moviesFilter>
+    <app-movies-filter [filterMovies]="filterMovies"></app-movies-filter>
+  </ng-template>
 </div>

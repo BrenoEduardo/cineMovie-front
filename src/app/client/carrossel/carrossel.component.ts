@@ -14,7 +14,9 @@ export class CarrosselComponent implements OnInit, OnDestroy {
 
   timerSubs!: Subscription;
 
-  @Input() imagens: MovieModel[] = [];
+  @Input() movies: MovieModel[] = [];
+  @Input() typeCarrosel!: string;
+
 
   private _indexImagemAtiva: number = 0;
   get indexImagemAtiva() {
@@ -23,11 +25,13 @@ export class CarrosselComponent implements OnInit, OnDestroy {
 
   set indexImagemAtiva(value: number) {
     this._indexImagemAtiva =
-      value < this.imagens.length ? value : 0;
+      value < this.movies.length ? value : 0;
   }
 
   ngOnInit(): void {
-    this.iniciarTimer();
+    if(this.typeCarrosel == 'principal'){
+      this.iniciarTimer()
+    }
   }
 
   ngOnDestroy(): void {
@@ -45,21 +49,23 @@ export class CarrosselComponent implements OnInit, OnDestroy {
   }
 
   avancarImagem(): void {
-    this.ativarImagem(this.indexImagemAtiva + 5);
+    this.ativarImagem(this.indexImagemAtiva + 3);
   }
 
   retrocederImagem(): void {
-    this.ativarImagem(this.indexImagemAtiva - 5);
+    this.ativarImagem(this.indexImagemAtiva - 3);
   }
 
   ativarImagem(index: number): void {
-    if (index >= this.imagens.length) {
+    if (index >= this.movies.length) {
       index = 0;
     } else if (index < 0) {
-      index = this.imagens.length - 5;
+      index = this.movies.length - 5;
     }
     this.indexImagemAtiva = index;
-    this.iniciarTimer();
+    if(this.typeCarrosel == 'principal'){
+      this.iniciarTimer()
+    }
   }
   descriptionMovie(movie: MovieModel){
     this.router.navigate(['/client/description-movies'], { queryParams: { movie: JSON.stringify(movie) } });
