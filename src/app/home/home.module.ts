@@ -11,11 +11,9 @@ import { ModalLoginComponent } from './modal-login/modal-login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './register/register.component';
-import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
-  declarations: [HomeComponent, MainComponent, ModalLoginComponent, RegisterComponent],
+  declarations: [HomeComponent, MainComponent, ModalLoginComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
@@ -26,7 +24,6 @@ import { TextMaskModule } from 'angular2-text-mask';
     MatInputModule,
     ReactiveFormsModule,
     MatRadioModule,
-    TextMaskModule
   ],
   exports:[
     HomeComponent,

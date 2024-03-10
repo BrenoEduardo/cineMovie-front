@@ -9,9 +9,6 @@ export class LoginService {
   public url = enviroment.apiUrl;
   constructor(private http: HttpClient) { }
 
-  register(infoUser: any){
-    return this.http.post(`${this.url}auth/register`,infoUser)
-  }
   login(infoUser: any){
     return this.http.post(`${this.url}auth/authenticate`,infoUser)
   }

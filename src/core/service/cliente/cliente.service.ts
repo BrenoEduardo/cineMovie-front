@@ -10,13 +10,10 @@ export class ClienteService {
 
   constructor(private http: HttpClient) { }
 
-  getAllCompanys(){
-    return this.http.get(`${this.url}client/getAllCompanys`)
+  getMovies(){
+    return this.http.get(`${this.url}client/getAllMovies`)
   }
-  filterCompanies(filter: any){
-    return this.http.post(`${this.url}client/filterCompanies`, filter)
-  }
-  editProfile(data: any){
-    return this.http.put(`${this.url}client/editProfile`, data)
+  sendRating(payload: any){
+    return this.http.post(`${this.url}client/avaliation-movies`, payload)
   }
 }

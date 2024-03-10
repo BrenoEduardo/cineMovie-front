@@ -1,0 +1,50 @@
+.carrossel-container {
+  overflow: hidden;
+}
+
+.carrossel {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.item {
+  flex: 0 0 17%;
+  height: 300px; /* Altura desejada */
+  background-size: cover;
+  background-position: center;
+}
+
+// .botoes-controle {
+//   display: flex;
+//   gap: 10px;
+//   justify-content: center;
+//   margin-top: 8px;
+// }
+
+// .botoes-controle button {
+//   background: #ccc;
+//   border: none;
+//   border-radius: 50%;
+//   cursor: pointer;
+//   height: 12px;
+//   width: 12px;
+// }
+
+// .botoes-controle button.ativo {
+//   background: #ff0000;
+//   cursor: default;
+// }
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+.icon-button:focus {
+  outline: none;
+}
+
+.icon-button mat-icon {
+  font-size: px;
+}

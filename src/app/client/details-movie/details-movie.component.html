@@ -1,0 +1,63 @@
+<!-- movie-details.component.html -->
+<div class="container mx-auto my-8">
+
+  <div class="max-w-screen-xl mx-auto p-8 bg-white rounded-lg shadow-lg">
+    <button mat-icon-button class="" (click)="goBack()">
+      <mat-icon class="">keyboard_arrow_left</mat-icon>
+    </button>
+    <h2 class="text-3xl font-bold mb-4">{{ movie.name }}</h2>
+    <div class="flex flex-wrap items-center mb-4">
+      <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
+        <img
+          [src]="movie.coverImage"
+          alt="Movie Cover"
+          class="w-full h-auto rounded-lg"
+        />
+      </div>
+      <div class="w-full sm:w-1/2 md:w-2/3 lg:w-3/4 p-4">
+        <p><strong>Descrição:</strong> {{ movie.description }}</p>
+        <p><strong>Duração:</strong> {{ movie.duration }} minutos</p>
+        <p><strong>Ano de Lançamento:</strong> {{ movie.releaseYear }}</p>
+        <p>
+          <strong>Gêneros:</strong>
+          <span *ngFor="let genre of movie.genres" class="mr-2">{{
+            genre.genresName
+          }}</span>
+        </p>
+        <p>
+          <strong>Diretores:</strong>
+          <span *ngFor="let director of movie.directors" class="mr-2">{{
+            director.directorName
+          }}</span>
+        </p>
+        <p>
+          <strong>Atores:</strong>
+          <span *ngFor="let actor of movie.actors" class="mr-2">{{
+            actor.actorName
+          }}</span>
+        </p>
+      </div>
+    </div>
+    <div>
+      <div>
+        <div>
+        <h2>Total de avaliação</h2>
+        <h4>{{movie.quantRatings}}</h4>
+      </div>
+      <div>
+        <h2>Media das avaliações</h2>
+        <h4>{{movie.ratings}}</h4>
+      </div>
+      </div>
+      <div class="flex items-center">
+        <span class="mr-4">Avalie este filme:</span>
+        <mat-icon
+          *ngFor="let star of [1, 2, 3, 4]"
+          class="cursor-pointer text-yellow-500"
+          (click)="rateMovie(star)"
+          >{{ isRated(star) ? "star" : "star_border" }}</mat-icon
+        >
+      </div>
+    </div>
+  </div>
+</div>

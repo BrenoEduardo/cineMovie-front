@@ -16,7 +16,8 @@ export class ModalLoginComponent {
   public submitted: boolean = false;
   public errorLogin: boolean = false;
   public loading: boolean = false;
-
+  public errorActive: boolean = false;
+  public messageError!: string;
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
@@ -57,12 +58,17 @@ export class ModalLoginComponent {
       next: (res: any) => {
         localStorage.setItem('token', res.data);
         const decoded: any = jwtDecode(res.data);
-        decoded.typeAccount == 'client'
-          ? this.router.navigate(['/client'])
-          : this.router.navigate(['/colaborator']);
+        if (!decoded.active){
+        this.errorActive = true;
+        return;
+        }
+        decoded.role == 'client'
+          ? this.router.navigate(['/client/movies'])
+          : this.router.navigate(['/admin/list-user']);
         this.dialogRef.close();
       },
       error: (error: any) => {
+        this.messageError = error.error.message
         this.errorLogin = true;
         this.loading = false;
       },

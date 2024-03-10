@@ -1,0 +1,223 @@
+<div>
+  <div class="text-center pt-6">
+    <h1>Cadastro de filmes</h1>
+  </div>
+  <form [formGroup]="filmeForm" (ngSubmit)="onSubmit()" class="mx-auto p-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <label class="block">
+        <span class="text-gray-700">Nome:</span>
+        <input
+          type="text"
+          formControlName="name"
+          class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+        />
+      </label>
+
+      <label class="block">
+        <span class="text-gray-700">Descrição:</span>
+        <textarea
+          formControlName="description"
+          class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+        ></textarea>
+      </label>
+
+      <label class="block">
+        <span class="text-gray-700">Duração:</span>
+        <input
+          type="number"
+          formControlName="duration"
+          class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+        />
+      </label>
+      <label class="custom-file-input">
+        <span class="text-gray-700">Capa do filme</span>
+        <input
+          type="file"
+          (change)="onFileSelected($event)"
+          class="mt-1 block"
+        />
+        <span class="select-achive">{{
+          this.filmeForm.value.coverImage
+            ? this.filmeForm.value.coverImage.name
+            : "Nenhum arquivo selecionado"
+        }}</span>
+      </label>
+      <label class="block">
+        <span class="text-gray-700">Ana do lançamento:</span>
+        <input
+          type="number"
+          formControlName="releaseYear"
+          class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+        />
+      </label>
+
+      <div formArrayName="genres" class="block">
+        <label
+          *ngFor="let genre of genreForms.controls; let i = index"
+          class="block relative"
+        >
+          Genêro {{ i + 1 }}:
+          <select
+            formControlName="{{ i }}"
+            class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          >
+            <option *ngFor="let genre of genres" [value]="genre.name">
+              {{ genre.name }}
+            </option>
+          </select>
+          <span
+            class="material-icons text-red-500 absolute right-6 top-8 cursor-pointer"
+            (click)="removeGenre(i)"
+            *ngIf="this.genreForms.length > 1"
+            >delete</span
+          >
+        </label>
+        <button
+          type="button"
+          (click)="addGenre()"
+          class="p-2 mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Adicionar Genêro
+        </button>
+      </div>
+
+      <div formArrayName="directors" class="block">
+        <label
+          *ngFor="let director of directorForms.controls; let i = index"
+          class="block relative"
+        >
+          Diretor {{ i + 1 }}:
+          <select
+            formControlName="{{ i }}"
+            class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          >
+            <option *ngFor="let director of directors" [value]="director.name">
+              {{ director.name }}
+            </option>
+          </select>
+          <span
+            class="material-icons text-red-500 absolute right-6 top-8 cursor-pointer"
+            (click)="removeDirector(i)"
+            *ngIf="this.directorForms.length > 1"
+            >delete</span
+          >
+        </label>
+        <button
+          type="button"
+          (click)="addDirector()"
+          class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Adicionar Diretor
+        </button>
+      </div>
+
+      <div formArrayName="actors" class="block">
+        <label
+          *ngFor="let actor of actorForms.controls; let i = index"
+          class="block relative"
+        >
+          Ator/Atriz {{ i + 1 }}:
+          <select
+            formControlName="{{ i }}"
+            class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          >
+            <option *ngFor="let actor of actors" [value]="actor.name">
+              {{ actor.name }}
+            </option>
+          </select>
+          <span
+            class="material-icons text-red-500 absolute right-6 top-8 cursor-pointer"
+            (click)="removeActor(i)"
+            *ngIf="this.actorForms.length > 1"
+            >delete</span
+          >
+        </label>
+        <button
+          type="button"
+          (click)="addActor()"
+          class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Adicionar Ator/Atriz
+        </button>
+      </div>
+    </div>
+    <div>
+      <button
+        type="submit"
+        class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-4 rounded cursor-pointer"
+      >
+        Adicionar
+      </button>
+    </div>
+  </form>
+  <form
+    [formGroup]="cadastroForm"
+    (ngSubmit)="onCadastroSubmit()"
+    class="mx-auto p-6 mt-6"
+  >
+    <div class="flex items-center">
+      <h2 class="text-lg font-semibold mb-2">
+        Cadastro de gênero, atores ou diretores
+      </h2>
+      <mat-icon
+        class="mat-18 text-red-500 mb-4 ml-4 cursor-pointer"
+        matTooltip="Para adicionar novos gêneros, atores ou diretores, precisa ser 1 por vez"
+        matTooltipPosition="above"
+        >info</mat-icon
+      >
+    </div>
+    <!-- Gênero -->
+    <div class="mb-4">
+      <label class="block">
+        <span class="text-gray-700">Gênero:</span>
+        <input
+          type="text"
+          formControlName="genresName"
+          class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+        />
+      </label>
+      <!-- <button type="button" (click)="addgenresName()" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Adicionar Gênero
+      </button> -->
+    </div>
+
+    <!-- Diretor -->
+    <div class="mb-4">
+      <label class="block">
+        <span class="text-gray-700">Diretor:</span>
+        <input
+          type="text"
+          formControlName="directorName"
+          class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+        />
+      </label>
+      <!-- <button type="button" (click)="addDirectorname()" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Adicionar Diretor
+      </button> -->
+    </div>
+
+    <!-- Ator/Atriz -->
+    <div class="mb-4">
+      <label class="block">
+        <span class="text-gray-700">Ator/Atriz:</span>
+        <input
+          type="text"
+          formControlName="actorName"
+          class="p-2 mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+        />
+      </label>
+      <!-- <button type="button" (click)="addactorName()" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Adicionar Ator/Atriz
+      </button> -->
+    </div>
+    <!-- <mat-error *ngIf="errorCreate" class="pt-2">Campos em branco</mat-error> -->
+    <div>
+      <button
+        type="submit"
+        class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-4 rounded cursor-pointer"
+      >
+        Adicionar
+      </button>
+    </div>
+  </form>
+</div>

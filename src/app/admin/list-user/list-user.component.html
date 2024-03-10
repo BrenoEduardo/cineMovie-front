@@ -1,0 +1,56 @@
+    <div class="flex-grow p-4 w-full">
+      <div class="flex items-center justify-center">
+        <mat-form-field class="example-form-field w-full max-w-[640px]">
+          <mat-label>Pesquisar</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Pesquise por nome de conta ou email"
+            (keyup)="filterCompanies($event)"
+          />
+          <button matSuffix mat-icon-button aria-label="search">
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+        <div class="pl-32">
+          <button
+            mat-icon-button
+            class="p-3 bg-white flex items-center justify-center rounded-lg"
+            (click)="openModal()"
+          >
+            Adicionar usuário
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        *ngIf="users?.length; else notCompanies"
+      >
+        <div
+          class="bg-white p-4 rounded shadow-md cursor-pointer"
+          *ngFor="let user of users"
+          (click)="openModal(user)"
+        >
+          <h2 class="text-lg font-semibold mb-2 text-center">
+            {{ user.name }}
+          </h2>
+          <div class="flex justify-between items-center">
+            <div>
+              <span class="!font-bold text-lg">Nome</span>
+              <p>{{ user.role }}</p>
+            </div>
+            <div>
+              <span class="!font-bold text-lg">Status</span>
+              <p>{{ user.active == true ? "Ativado" : "Inativado" }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #notCompanies>
+        <h4 *ngIf="!loading">
+          Nenhum restaurante, produto ou descrição do produto foi encontrado
+        </h4>
+      </ng-template>
+    <mat-spinner class="mx-auto" *ngIf="loading"></mat-spinner>
+    </div>

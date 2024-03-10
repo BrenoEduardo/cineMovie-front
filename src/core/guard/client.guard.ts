@@ -16,10 +16,10 @@ export class ClientGuard implements CanActivate {
     const token: any = localStorage.getItem('token');
     const decoded: any = jwtDecode(token);
 
-    if (decoded.typeAccount == 'client') {
+    if (decoded.role == 'client' && decoded.active) {
       return true;
     } else {
-      this.router.navigate(['/colaborator']);
+      this.router.navigate(['/admin']);
       return false;
     }
   }

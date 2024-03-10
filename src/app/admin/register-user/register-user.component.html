@@ -1,0 +1,93 @@
+<div class="flex justify-end pr-2 pt-2" (click)="closedModel()">
+  <mat-icon class="opacity-50 cursor-pointer">close</mat-icon>
+</div>
+<form
+  class="example-form"
+  [formGroup]="loginForm"
+  (ngSubmit)="onSubmit()"
+  class="flex flex-col items-center p-9"
+>
+  <div class="flex flex-col items-start w-full">
+    <mat-label>Email*</mat-label>
+    <input
+      type="email"
+      matInput
+      formControlName="email"
+      placeholder="Ex. pat@example.com"
+      class="p-2 border-2 w-full"
+    />
+    <mat-error *ngIf="loginForm.controls.email.hasError('email') && submitted"
+      >Email invalido</mat-error
+    >
+    <mat-error
+      *ngIf="loginForm.controls.email.hasError('required') && submitted"
+      >Email obrigatório</mat-error
+    >
+    <div *ngIf="!this.data.infoUser" class="w-full">
+      <mat-label class="pt-3">Senha*</mat-label>
+      <input
+        type="password"
+        matInput
+        formControlName="password"
+        placeholder="Contém caracteres e números"
+        class="p-2 border-2 w-full"
+      />
+      <mat-error
+        *ngIf="loginForm.controls.password.hasError('required') && submitted"
+        >Senha obrigatória</mat-error
+      >
+      <mat-error
+        *ngIf="loginForm.controls.password.hasError('minlength') && submitted"
+        >Senha invalida</mat-error
+      >
+    </div>
+    <div class="w-full">
+      <mat-label>Nome Completo*</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="name"
+        placeholder="Nome Completo"
+        class="p-2 border-2 w-full"
+      />
+      <mat-error
+        *ngIf="loginForm.controls.name.hasError('required') && submitted"
+        >Nome obrigatório</mat-error
+      >
+    </div>
+    <mat-radio-group
+      aria-label="Select an option"
+      formControlName="role"
+      class="p-1"
+    >
+      <mat-radio-button value="client">Cliente</mat-radio-button>
+      <mat-radio-button value="admin">Administrador</mat-radio-button>
+    </mat-radio-group>
+    <mat-error *ngIf="loginForm.controls.role.hasError('required') && submitted"
+      >Campo obrigatório</mat-error
+    >
+    <mat-error *ngIf="error" class="pt-2">Usuário já existe</mat-error>
+    <div class="pt-6 w-full">
+      <button
+        mat-raised-button
+        type="submit"
+        class="!text-white p-3 !bg-blue-500 !w-full"
+        [class.spinner]="loading"
+        [disabled]="loading"
+      >
+        {{ this.data.infoUser ? "Editar" : "Registrar" }}
+      </button>
+    </div>
+    <button
+      mat-raised-button
+      class="text-white p-3  w-full"
+      [ngClass]="{ 'bg-red-500': this.data.infoUser.active, 'bg-green-500': !this.data.infoUser.active }"
+      [class.spinner]="loading"
+      [disabled]="loading"
+      *ngIf="this.data.infoUser"
+      (click)="patchUser()"
+    >
+      {{ this.data.infoUser.active ? "Inativar" : "Ativar" }}
+    </button>
+  </div>
+</form>

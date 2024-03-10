@@ -48,8 +48,9 @@
         >Senha invalida</mat-error
       >
       <mat-error class="pt-2" *ngIf="errorLogin"
-        >Usuário ou senha invalidos</mat-error
+        >{{messageError}}</mat-error
       >
+
     </div>
   </div>
   <div class="flex justify-evenly w-full pt-8">
@@ -63,10 +64,4 @@
       Entrar
     </button>
   </div>
-  <div class="pt-6">
-    <p (click)="register()" class="cursor-pointer">
-      Não tenho uma conta? <span class="text-yellow-600"> Crie uma</span>
-    </p>
-  </div>
 </form>
-<app-register *ngIf="Isregister"></app-register>

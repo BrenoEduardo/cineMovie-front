@@ -1,0 +1,29 @@
+<div>
+  <div class="flex gap-8">
+    <ng-container
+      *ngFor="
+        let grupoImagens of imagens
+          | slice : indexImagemAtiva : indexImagemAtiva + 5
+      "
+    >
+      <div
+        class="item cursor-pointer"
+        [style.backgroundImage]="
+          grupoImagens.coverImage.length > 0
+            ? 'url(' + grupoImagens.coverImage + ')'
+            : 'url(../../../../../assets/default-image.jpg)'
+        "
+        (click)="descriptionMovie(grupoImagens)"
+      ></div>
+    </ng-container>
+  </div>
+  <!-- Botões de controle -->
+  <div class="botoes-controle">
+    <button class="icon-button" (click)="pararTimer(); retrocederImagem()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <button class="icon-button" (click)="pararTimer(); avancarImagem()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</div>

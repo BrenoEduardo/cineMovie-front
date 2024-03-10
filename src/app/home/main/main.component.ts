@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalLoginComponent } from '../modal-login/modal-login.component';
-import { RegisterComponent } from '../register/register.component';
+import { RegisterComponent } from '../../admin/register-user/register-user.component';
 
 @Component({
   selector: 'app-main',
