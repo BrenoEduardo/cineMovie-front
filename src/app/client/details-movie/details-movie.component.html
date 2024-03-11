@@ -58,6 +58,9 @@
           >{{ isRated(star) ? "star" : "star_border" }}</mat-icon
         >
       </div>
+      <div *ngIf="sendAvaliation">
+        <span class="text-green-500">Avaliação enviada com sucesso!</span>
+      </div>
     </div>
   </div>
 </div>

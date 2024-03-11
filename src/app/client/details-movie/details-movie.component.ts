@@ -14,6 +14,7 @@ export class DetailsMovieComponent implements OnInit {
   movie!: any;
   private userRating!: number;
   protected infoUser!: jwtModel;
+  sendAvaliation: boolean = false
 
   constructor(
     private route: ActivatedRoute,
@@ -44,7 +45,7 @@ export class DetailsMovieComponent implements OnInit {
     };
     if (this.infoUser.role != 'admin') {
       this.clientService.sendRating(payload).subscribe((res: any) => {
-
+        this.sendAvaliation = true
       });
     }
   }
