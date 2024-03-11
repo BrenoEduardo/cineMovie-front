@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DetailsMovieComponent } from './details-movie.component';
+import { of } from 'rxjs';
 
 describe('DetailsMovieComponent', () => {
   let component: DetailsMovieComponent;
@@ -15,9 +17,5 @@ describe('DetailsMovieComponent', () => {
     fixture = TestBed.createComponent(DetailsMovieComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 });

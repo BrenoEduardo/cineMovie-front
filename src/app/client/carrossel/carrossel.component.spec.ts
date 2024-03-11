@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CarrosselComponent } from './carrossel.component';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('CarrosselComponent', () => {
   let component: CarrosselComponent;
@@ -8,7 +9,8 @@ describe('CarrosselComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CarrosselComponent ]
+      declarations: [ CarrosselComponent ],
+      imports: [MatIconModule]
     })
     .compileComponents();
 

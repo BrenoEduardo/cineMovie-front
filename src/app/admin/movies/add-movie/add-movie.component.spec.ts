@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddMovieComponent } from './add-movie.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('AddMovieComponent', () => {
   let component: AddMovieComponent;
@@ -8,7 +11,8 @@ describe('AddMovieComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddMovieComponent ]
+      declarations: [ AddMovieComponent ],
+      imports: [HttpClientModule, MatIconModule, ReactiveFormsModule ]
     })
     .compileComponents();
 

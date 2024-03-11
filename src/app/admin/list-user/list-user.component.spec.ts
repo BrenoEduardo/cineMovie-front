@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListUserComponent } from './list-user.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 describe('ListUserComponent', () => {
   let component: ListUserComponent;
@@ -8,7 +12,8 @@ describe('ListUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListUserComponent ]
+      declarations: [ ListUserComponent ],
+      imports: [HttpClientModule, MatDialogModule, MatIconModule, MatInputModule]
     })
     .compileComponents();
 
@@ -18,6 +23,6 @@ describe('ListUserComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeNull()
   });
 });
