@@ -63,7 +63,10 @@ que verificar se o usuario esta logado, e se o usuario logado pode fazer aquele 
 de usuario pode ir para aquele rota, creio que a parte de segurança ficou boa.
 Fiz um soft delete para os usuario, que no caso eles inativam o usuario e nao deletam, caso queiram reativar a conta, basta clicar para editar o usuario
 O que eu pequei nesse projeto foi, na minha visão, o layout, creio que poderia ter feito melhor, porém fiquei focado nas funcionalidades que não coloquei
-a devida atenção nisso
+a devida atenção nisso.
+Outro ponto e que eu não foquei em deixar o sistema totalmente redondo, queria demonstrar o máximo as minhas skills, então mostrando que sei fazer ao menos
+uma validação, creio que esteja valendo, por exemplo coloquei validações na maioria dos campos, porém não em todos, obviamente em um sistema real não 
+ocorreria isso
 
 Melhorias que eu faria nesse projeto: Layout, creio que existe layouts melhores, a parte do carrosel, tentei fazer algo mais fluido, a parte do filtro por
 diretor, genero e ator, fiz ele na parte do front por ter mais facilidade de manipular arrays(quando trabalhei apenas com front os back-end não mandava os dados
